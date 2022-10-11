@@ -21,15 +21,35 @@ public class MainView extends JFrame {
         textOben.setBorder( new LineBorder(Color.BLACK) );
         textOben.setBackground( Color.CYAN );
         textOben.setOpaque(true);
+        add( textOben, BorderLayout.NORTH );
 
         textMitte = new JLabel("Das Zentrum");
 
-        add( textOben, BorderLayout.NORTH );
-        add( textMitte, BorderLayout.CENTER );
+        JPanel centerPanel = new JPanel( new FlowLayout() );
+        add(centerPanel, BorderLayout.CENTER);
+        centerPanel.add( textMitte );
+        centerPanel.add( new JButton("Eins") );
+        centerPanel.add( new JButton("Zwei") );
+        centerPanel.add( new JButton("Drei") );
+        centerPanel.add( new JButton("Vier") );
+
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout( new FlowLayout() );
 
         klichMichButton = new JButton("Klick mich");
-        add( klichMichButton, BorderLayout.SOUTH );
+        southPanel.add( klichMichButton );
 
+        JButton exitButton = new JButton("Exit");
+        southPanel.add( exitButton );
+
+        add( southPanel, BorderLayout.SOUTH );
+
+        // Lambda Ausdrücke
+        exitButton.addActionListener(
+                e -> dispose()
+        );
+
+        pack();
         setVisible(true);
     }
 
