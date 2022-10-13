@@ -10,6 +10,9 @@ public class MainView extends JFrame {
     private final JLabel textMitte;
     private final JButton klichMichButton;
     private final JButton einsButton, zweiButton, dreiButton;
+    private final JTextField textField;
+
+
 
     public MainView() {
         setTitle("Mein erstes GUI Programm");
@@ -18,16 +21,26 @@ public class MainView extends JFrame {
 
         setLayout( new BorderLayout() );
 
+
         JLabel textOben = new JLabel("Hier steht hilfreicher Text!");
         textOben.setBorder( new LineBorder(Color.BLACK) );
         textOben.setBackground( Color.CYAN );
         textOben.setOpaque(true);
         add( textOben, BorderLayout.NORTH );
 
+        textField = new JTextField();
+        textField.setColumns(30);
+        textField.setText("Beispielstext");
+
+
         textMitte = new JLabel("Das Zentrum");
+
+        //JTextField textField = new JTextField();
+        //add( textField, BorderLayout.CENTER );
 
         JPanel centerPanel = new JPanel( new FlowLayout() );
         add(centerPanel, BorderLayout.CENTER);
+        centerPanel.add( textField );
         centerPanel.add( textMitte );
         einsButton = new JButton("Eins");
         zweiButton = new JButton("Zwei");
@@ -77,4 +90,14 @@ public class MainView extends JFrame {
     public String getTextMitte() {
         return textMitte.getText();
     }
+
+    public void setTextField(String text){
+        textField.setText(text);
+    }
+
+    public String getTextField() {
+        return textField.getText();
+    }
+
+
 }
