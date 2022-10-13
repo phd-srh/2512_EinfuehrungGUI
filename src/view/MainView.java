@@ -8,8 +8,12 @@ import java.awt.event.ActionListener;
 public class MainView extends JFrame {
 
     private final JLabel textMitte;
-    private final JButton klichMichButton;
+    private final JButton klickMichButton;
     private final JButton einsButton, zweiButton, dreiButton;
+    private final JCheckBox checkBox;
+    private final JTextField textField;
+
+
 
     public MainView() {
         setTitle("Mein erstes GUI Programm");
@@ -24,10 +28,19 @@ public class MainView extends JFrame {
         textOben.setOpaque(true);
         add( textOben, BorderLayout.NORTH );
 
+        checkBox = new JCheckBox("Einchecken?");
+
+        textField = new JTextField();
+        textField.setColumns(30);
+        textField.setText("Beispielstext");
+
+
         textMitte = new JLabel("Das Zentrum");
 
         JPanel centerPanel = new JPanel( new FlowLayout() );
         add(centerPanel, BorderLayout.CENTER);
+        centerPanel.add( textField );
+        centerPanel.add(checkBox);
         centerPanel.add( textMitte );
         einsButton = new JButton("Eins");
         zweiButton = new JButton("Zwei");
@@ -39,8 +52,8 @@ public class MainView extends JFrame {
         JPanel southPanel = new JPanel();
         southPanel.setLayout( new FlowLayout() );
 
-        klichMichButton = new JButton("Klick mich");
-        southPanel.add( klichMichButton );
+        klickMichButton = new JButton("Klick mich");
+        southPanel.add(klickMichButton);
 
         JButton exitButton = new JButton("Exit");
         southPanel.add( exitButton );
@@ -66,8 +79,8 @@ public class MainView extends JFrame {
         dreiButton.addActionListener(listener);
     }
 
-    public void setKlichMichButtonListener(ActionListener listener) {
-        klichMichButton.addActionListener(listener);
+    public void setKlickMichButtonListener(ActionListener listener) {
+        klickMichButton.addActionListener(listener);
     }
 
     public void setTextMitte(String text) {
@@ -77,4 +90,22 @@ public class MainView extends JFrame {
     public String getTextMitte() {
         return textMitte.getText();
     }
+
+    public void setCheckBox(boolean wert){
+        checkBox.setSelected(wert);
+    }
+    public boolean isCheckBox() {
+        return checkBox.isSelected();
+    }
+
+
+    public void setTextField(String text){
+        textField.setText(text);
+    }
+
+    public String getTextField() {
+        return textField.getText();
+    }
+
+
 }

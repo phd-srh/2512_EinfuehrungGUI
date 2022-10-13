@@ -41,7 +41,7 @@ public class MainController {
         );
 
         // (3, typische Anwendung) Nutzung als funktionales Interface
-        mainView.setKlichMichButtonListener( this::toggleText );
+        mainView.setKlickMichButtonListener( this::toggleText );
     }
 
     // Nachfolgende Methode hat die korrekte Signatur für
