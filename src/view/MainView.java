@@ -9,6 +9,7 @@ public class MainView extends JFrame {
 
     private final JLabel textMitte;
     private final JButton klichMichButton;
+    private final JButton einsButton, zweiButton, dreiButton;
 
     public MainView() {
         setTitle("Mein erstes GUI Programm");
@@ -28,10 +29,12 @@ public class MainView extends JFrame {
         JPanel centerPanel = new JPanel( new FlowLayout() );
         add(centerPanel, BorderLayout.CENTER);
         centerPanel.add( textMitte );
-        centerPanel.add( new JButton("Eins") );
-        centerPanel.add( new JButton("Zwei") );
-        centerPanel.add( new JButton("Drei") );
-        centerPanel.add( new JButton("Vier") );
+        einsButton = new JButton("Eins");
+        zweiButton = new JButton("Zwei");
+        dreiButton = new JButton("Drei");
+        centerPanel.add( einsButton );
+        centerPanel.add( zweiButton );
+        centerPanel.add( dreiButton );
 
         JPanel southPanel = new JPanel();
         southPanel.setLayout( new FlowLayout() );
@@ -51,6 +54,16 @@ public class MainView extends JFrame {
 
         pack();
         setVisible(true);
+    }
+
+    public void setEinsButtonListener(ActionListener listener) {
+        einsButton.addActionListener(listener);
+    }
+    public void setZweiButtonListener(ActionListener listener) {
+        zweiButton.addActionListener(listener);
+    }
+    public void setDreiButtonListener(ActionListener listener) {
+        dreiButton.addActionListener(listener);
     }
 
     public void setKlichMichButtonListener(ActionListener listener) {
