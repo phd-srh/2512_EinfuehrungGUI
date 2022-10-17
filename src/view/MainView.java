@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -29,43 +30,59 @@ public class MainView extends JFrame {
         textOben.setOpaque(true);
         add( textOben, BorderLayout.NORTH );
 
+        JPanel centerPanel = new JPanel( new GridLayout(8,2) );
+        centerPanel.setBorder( new EmptyBorder(5,5,5,5) );
+        add(centerPanel, BorderLayout.CENTER);
 
+        textMitte = new JLabel("Das Zentrum");
+        centerPanel.add( textMitte );
+        centerPanel.add( new JLabel() );
 
+        centerPanel.add( new JLabel("Checkbox") );
         checkBox = new JCheckBox("Einchecken?");
+        centerPanel.add( checkBox );
 
-
+        centerPanel.add( new JLabel("TextField") );
         textField = new JTextField();
         textField.setColumns(30);
         textField.setText("Beispielstext");
-
-
-        textMitte = new JLabel("Das Zentrum");
-
-        JPanel centerPanel = new JPanel( new FlowLayout() );
-        add(centerPanel, BorderLayout.CENTER);
         centerPanel.add( textField );
-        centerPanel.add( checkBox );
 
+        centerPanel.add( new JLabel("Radiobuttons") );
+
+        JPanel radioPanel = new JPanel( new FlowLayout() );
         radiobuttonM = new JRadioButton("Männlich");
         radiobuttonW = new JRadioButton("Weiblich");
         radiobuttonD = new JRadioButton("Diverse");
-        centerPanel.add(radiobuttonM);
-        centerPanel.add(radiobuttonW);
-        centerPanel.add(radiobuttonD);
+        radiobuttonM.setSelected(true);
+        radioPanel.add(radiobuttonM);
+        radioPanel.add(radiobuttonW);
+        radioPanel.add(radiobuttonD);
+        centerPanel.add( radioPanel );
         ButtonGroup bg = new ButtonGroup();
         bg.add(radiobuttonM);
         bg.add(radiobuttonW);
         bg.add(radiobuttonD);
 
-        radiobuttonM.setSelected(true);
+        centerPanel.add( new JLabel("Kombobox") );
 
+        DefaultComboBoxModel<String> defaultComboBoxModel = new DefaultComboBoxModel<>();
+        JComboBox<String> comboBox = new JComboBox<String>();
+        defaultComboBoxModel.addElement("Baden-Württemberg");
+        defaultComboBoxModel.addElement("Bayern");
+        defaultComboBoxModel.addElement("Rheinland Pfalz");
+        defaultComboBoxModel.addElement("Hessen");
+        comboBox.setModel(defaultComboBoxModel);
+        centerPanel.add( comboBox );
 
-        centerPanel.add( textMitte );
         einsButton = new JButton("Eins");
         zweiButton = new JButton("Zwei");
         dreiButton = new JButton("Drei");
+        centerPanel.add( new JLabel("Ein Button") );
         centerPanel.add( einsButton );
+        centerPanel.add( new JLabel("Zwei Button") );
         centerPanel.add( zweiButton );
+        centerPanel.add( new JLabel("Drei Button") );
         centerPanel.add( dreiButton );
 
         JPanel southPanel = new JPanel();
@@ -153,6 +170,4 @@ public class MainView extends JFrame {
             return 'd';
         }
     }
-
-
 }
