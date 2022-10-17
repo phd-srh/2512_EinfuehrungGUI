@@ -12,6 +12,7 @@ public class MainView extends JFrame {
     private final JButton einsButton, zweiButton, dreiButton;
     private final JCheckBox checkBox;
     private final JTextField textField;
+    private final JRadioButton radiobuttonM, radiobuttonW, radiobuttonD;
 
 
 
@@ -28,7 +29,10 @@ public class MainView extends JFrame {
         textOben.setOpaque(true);
         add( textOben, BorderLayout.NORTH );
 
+
+
         checkBox = new JCheckBox("Einchecken?");
+
 
         textField = new JTextField();
         textField.setColumns(30);
@@ -40,7 +44,22 @@ public class MainView extends JFrame {
         JPanel centerPanel = new JPanel( new FlowLayout() );
         add(centerPanel, BorderLayout.CENTER);
         centerPanel.add( textField );
-        centerPanel.add(checkBox);
+        centerPanel.add( checkBox );
+
+        radiobuttonM = new JRadioButton("Männlich");
+        radiobuttonW = new JRadioButton("Weiblich");
+        radiobuttonD = new JRadioButton("Diverse");
+        centerPanel.add(radiobuttonM);
+        centerPanel.add(radiobuttonW);
+        centerPanel.add(radiobuttonD);
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(radiobuttonM);
+        bg.add(radiobuttonW);
+        bg.add(radiobuttonD);
+
+        radiobuttonM.setSelected(true);
+
+
         centerPanel.add( textMitte );
         einsButton = new JButton("Eins");
         zweiButton = new JButton("Zwei");
@@ -72,16 +91,20 @@ public class MainView extends JFrame {
     public void setEinsButtonListener(ActionListener listener) {
         einsButton.addActionListener(listener);
     }
+
     public void setZweiButtonListener(ActionListener listener) {
         zweiButton.addActionListener(listener);
     }
+
     public void setDreiButtonListener(ActionListener listener) {
         dreiButton.addActionListener(listener);
     }
 
+
     public void setKlickMichButtonListener(ActionListener listener) {
         klickMichButton.addActionListener(listener);
     }
+
 
     public void setTextMitte(String text) {
         textMitte.setText(text);
@@ -94,6 +117,7 @@ public class MainView extends JFrame {
     public void setCheckBox(boolean wert){
         checkBox.setSelected(wert);
     }
+
     public boolean isCheckBox() {
         return checkBox.isSelected();
     }
@@ -105,6 +129,29 @@ public class MainView extends JFrame {
 
     public String getTextField() {
         return textField.getText();
+    }
+
+    public void setGeschlecht(char geschlecht) {
+        if(geschlecht  == 'M' | geschlecht == 'm'){
+            radiobuttonM.setSelected(true);
+        }
+        if(geschlecht  == 'W' | geschlecht == 'w'){
+            radiobuttonW.setSelected(true);
+        }
+        if(geschlecht  == 'D' | geschlecht == 'd'){
+            radiobuttonD.setSelected(true);
+        }
+    }
+    public char getGeschlecht (){
+        if(radiobuttonM.isSelected()){
+            return 'm';
+        }
+        else if(radiobuttonW.isSelected()){
+            return 'w';
+        }
+        else {
+            return 'd';
+        }
     }
 
 

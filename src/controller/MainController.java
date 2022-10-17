@@ -17,13 +17,14 @@ public class MainController {
                     this.getClass().getName());
         }
     }
-
+    //Der Konstruktor der Klasse MainController
     public MainController(MainView mainView) {
         this.mainView = mainView;
         mainView.setTextMitte("Hier hat der Controller die Kontrolle! ");
 
         // (nicht mehr genutzt) dedizierte Klasse
         mainView.setEinsButtonListener( new EinsButtonActionListener() );
+
 
         // (1) Anonyme Klasse
         mainView.setZweiButtonListener(new ActionListener() {
@@ -34,15 +35,20 @@ public class MainController {
             }
         });
 
+
         // (2) Lambda
         mainView.setDreiButtonListener( e ->
                 System.out.println("Huch, Aufruf über Lambda " +
                         this.getClass().getName())
         );
 
+
+
         // (3, typische Anwendung) Nutzung als funktionales Interface
         mainView.setKlickMichButtonListener( this::toggleText );
     }
+
+
 
     // Nachfolgende Methode hat die korrekte Signatur für
     // ActionListener: @Override void actionPerformed(ActionEvent e)
@@ -57,6 +63,7 @@ public class MainController {
     }
 
 
+    //Die Main-Methode
     public static void main(String[] args) {
         new MainController( new MainView() );
     }
