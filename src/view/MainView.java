@@ -5,8 +5,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class MainView extends JFrame {
 
@@ -16,8 +14,7 @@ public class MainView extends JFrame {
     private final JCheckBox checkBox;
     private final JTextField textField;
     private final JRadioButton radiobuttonM, radiobuttonW, radiobuttonD;
-    private final JComboBox<String> comboBox;
-
+    private final JComboBox<String> bundesländerComboBox;
 
     public MainView() {
         setTitle("Mein erstes GUI Programm");
@@ -67,16 +64,8 @@ public class MainView extends JFrame {
         bg.add(radiobuttonD);
 
         centerPanel.add( new JLabel("Kombobox") );
-
-        String[] bundesländer = {"Baden-Württemberg", "Bayern",
-                "Berlin", "Brandenburg", "Bremen",
-                "Hamburg", "Hessen", "Mecklenburg-Vorpommern",
-                "Niedersachsen", "Nordrhein-Westfalen", "Rheinland-Pfalz",
-                "Saarland", "Sachsen", "Sachsen-Anhalt",
-                "Schleswig-Holstein", "Thüringen"};
-        comboBox = new JComboBox<>(bundesländer);
-        comboBox.addItemListener(new MyItemListener());
-        centerPanel.add(comboBox);
+        bundesländerComboBox = new JComboBox<>();
+        centerPanel.add(bundesländerComboBox);
 
         einsButton = new JButton("Eins");
         zweiButton = new JButton("Zwei");
@@ -108,18 +97,6 @@ public class MainView extends JFrame {
         setVisible(true);
     }
 
-    public class MyItemListener implements ItemListener{
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            if(e.getStateChange() == ItemEvent.SELECTED)  {
-                System.out.println(e.getItem());
-            }
-        }
-    }
-
-
-
     public void setEinsButtonListener(ActionListener listener) {
         einsButton.addActionListener(listener);
     }
@@ -131,7 +108,6 @@ public class MainView extends JFrame {
     public void setDreiButtonListener(ActionListener listener) {
         dreiButton.addActionListener(listener);
     }
-
 
     public void setKlickMichButtonListener(ActionListener listener) {
         klickMichButton.addActionListener(listener);
@@ -153,7 +129,6 @@ public class MainView extends JFrame {
     public boolean isCheckBox() {
         return checkBox.isSelected();
     }
-
 
     public void setTextField(String text){
         textField.setText(text);
@@ -186,19 +161,24 @@ public class MainView extends JFrame {
         }
     }
 
+    public void setBundesländerComboBoxModel(DefaultComboBoxModel<String> bundesländerComboBoxModel) {
+        bundesländerComboBox.setModel(bundesländerComboBoxModel);
+    }
+
+
     public void setBundesland(String bundesland) {
-        for (int i = 0; i < comboBox.getItemCount(); i++ ) {
-            if (comboBox.getItemAt(i).equals(bundesland)){
-                comboBox.setSelectedIndex(i);
+        for (int i = 0; i < bundesländerComboBox.getItemCount(); i++ ) {
+            if (bundesländerComboBox.getItemAt(i).equals(bundesland)){
+                bundesländerComboBox.setSelectedIndex(i);
                 return;
             }
         }
-        comboBox.addItem(bundesland);
-        comboBox.setSelectedIndex(comboBox.getItemCount()-1);
+        bundesländerComboBox.addItem(bundesland);
+        bundesländerComboBox.setSelectedIndex(bundesländerComboBox.getItemCount()-1);
     }
 
     public String getBundesland (){
-        return (String) comboBox.getSelectedItem();
+        return (String) bundesländerComboBox.getSelectedItem();
     }
 
 }
